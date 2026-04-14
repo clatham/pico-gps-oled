@@ -35,7 +35,7 @@ Next, we need to declare the project.  This requires the name of the current pro
 
 Add the following line:
 ```
-project(Lesson-02)
+project(pico-gps-oled)
 ```
 
 This declaration only needs to happen once, even in a huge project with many submodules.  However, you can break a larger project into multiple smaller ones, or your project may depend on another that is part of a third-party library.
@@ -87,12 +87,12 @@ CMake has several common target types, including static libraries, shared librar
 
 Add the following lines:
 ```
-add_executable(Lesson-02
+add_executable(pico-gps-oled
     main.c
 )
 ```
 
-This directs CMake to build an executable called "Lesson-02" using main.c as the only source file.
+This directs CMake to build an executable called "pico-gps-oled" using main.c as the only source file.
 
 
 ## Step 8 - Generating the build system
