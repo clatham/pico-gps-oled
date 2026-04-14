@@ -118,10 +118,10 @@ cmake --build build --config Release
 
 This tells CMake to invoke the build system for the current platform using the build system that is in the "build" directory.  It will use the "Release" configuration.  "Release" produces optimized code intended for release, while "Debug" produces unoptimized code that includes internal debug symbols.
 
-When the build is complete, you should find a binary named "Lesson-02" under the build directory.  You can run it by invoking the following command:
+When the build is complete, you should find a binary named "pico-gps-oled" under the build directory.  You can run it by invoking the following command:
 ```
 cd build
-./Lesson-02
+./pico-gps-oled
 ```
 
 The "./" means "in this directory", and it is required when you run a binary in the current directory on Linux.
