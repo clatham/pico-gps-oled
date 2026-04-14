@@ -14,6 +14,6 @@ In this project, we will connect a GNSS (GPS + GLONASS + Beidou) module and an O
 
 ## Lessons
 
-* [Lesson 1 - Setup an environment to build using the Raspberry Pi Pico C/C++ SDK](./Lesson-01/Lesson-01.md)
+* [Lesson 1 - Setup an Ubuntu build environment using WSL2](./Lesson-01/Lesson-01.md)
 * [Lesson 2 - Basic CMake build system](./Lesson-02/Lesson-02.md)
 * [Lesson 3 - Basic BASH build script](./Lesson-03/Lesson-03.md)

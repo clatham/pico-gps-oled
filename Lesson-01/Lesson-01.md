@@ -1,4 +1,4 @@
-# Lesson 1 - Setup an environment to build using the Raspberry Pi Pico C/C++ SDK
+# Lesson 1 - Setup an Ubuntu build environment using WSL2
 
 ## Step 1 - Enable WSL2 and Install Ubuntu LTS on your Windows 11 machine
 
