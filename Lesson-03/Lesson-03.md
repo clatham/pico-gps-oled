@@ -3,7 +3,13 @@
 BASH is a complex scripting language, and we're barely going to scratch the surface of it with our simple little build script.
 
 
-## Step 1 - Save and restore the current working directory
+## Step 1 - Create build.sh
+Create a BASH script, "build.sh", in the root of your project:
+```
+touch build.sh
+```
+
+## Step 2 - Save and restore the current working directory
 
 An ill-behaved script will dump you back at the command prompt somewhere in the file system other than where you started.  For this reason, I always begin my scripts by saving the current working directory, and I always end them by restoring it.
 
@@ -22,7 +28,7 @@ The first line sets the variable "CWD" equal to the value of the variable "PWD".
 Note that in BASH, a dollar sign is used to access the value of a variable.  In Windows, the variable would have a percent sign on both sides for the same effect.
 
 
-## Step 2 - Change the directory to the expected project directory
+## Step 3 - Change the directory to the expected project directory
 
 Sometimes a script is run from another directory rather than the one it was intended, which can cause it fail.  To prevent this, we'll change directory to the project directory.
 
@@ -41,7 +47,7 @@ The first line is complicated, but we'll read it from the center out and left to
 Finally, we change directory to that held in "PROJECT_DIR".
 
 
-## Step 5 - Clean the build directory
+## Step 4 - Clean the build directory
 
 Next we'll delete the contents of the build directory, but only if that directory exists.  Otherwise, it would produce an error, because the direcotry is missing.
 
@@ -57,7 +63,7 @@ This is a BASH conditional, and the "-d" evaluates to true if the given item exi
 The "rm" command removes files.  The "-r" option removes files recursively, and the "-f" option forces the removal even if files are directories or protected.  "rm -rf" is therefore a **very** powerful command that can obliterate your file system.  Always use it carefully.  In particular, I like to use the "./\*" type of relative path to ensure "rm" is constrained within a directory.  Be careful, as "/\*" would nuke your file system from the root.
 
 
-## Step 4 - Build it
+## Step 5 - Build it
 
 We previously learned how to use CMake, and now we must invoke it to do our build for us.
 
@@ -72,7 +78,7 @@ The first line invokes CMake to generate the build system, as we've seen before.
 This script now does a complete clean and build each time you run it.  We could have instead made it just invoke the build system without cleaning and generating every time.  Then we could've made a "rebuild" script that cleaned and generated when we wanted that behavior.
 
 
-## Step 5 - Running the script
+## Step 6 - Running the script
 
 My preferred way of running a script are either to "source" the script if I'm alright with it modifying my environment or invoking a new BASH shell to run it if I'm not.
 
@@ -91,7 +97,7 @@ bash -c build.sh
 This will cause a new BASH shell to be run on top of the current one.  It will have a copy of the parent environment.  It will execute the single command, then it will return to the parent shell.  Any changes to the child environment will be thrown away when it closes.
 
 
-## Step 6 - The other way to "run" a script
+## Step 7 - The other way to "run" a script
 
 Many people prefer to "execute" the script by marking it executable and adding a "shebang" to the first line of the script.  Shebang is a portmanteau of the words "hash" and "bang", which make up the shebang.  In UNIX parlance, the octothorp or pound sign is called a hash, and the exclamation mark is called a bang.
 
