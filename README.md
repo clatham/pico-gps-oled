@@ -17,3 +17,4 @@ In this project, we will connect a GNSS (GPS + GLONASS + Beidou) module and an O
 * [Lesson 1 - Setup an Ubuntu build environment using WSL2](./Lesson-01/Lesson-01.md)
 * [Lesson 2 - Basic CMake build system](./Lesson-02/Lesson-02.md)
 * [Lesson 3 - Basic BASH build script](./Lesson-03/Lesson-03.md)
+* [Lesson 4 - Targeting the Pi Pico](./Lesson-04/Lesson-04.md)
