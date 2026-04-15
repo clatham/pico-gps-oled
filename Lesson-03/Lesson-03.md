@@ -60,7 +60,7 @@ fi
 
 This is a BASH conditional, and the "-d" evaluates to true if the given item exists and is a directory.
 
-The "rm" command removes files.  The "-r" option removes files recursively, and the "-f" option forces the removal even if files are directories or protected.  "rm -rf" is therefore a **very** powerful command that can obliterate your file system.  Always use it carefully.  In particular, I like to use the "./\*" type of relative path to ensure "rm" is constrained within a directory.  Be careful, as "/\*" would nuke your file system from the root.
+The "rm" command removes files.  The "-r" option removes files recursively, and the "-f" option forces the removal even if files or directories are protected.  "rm -rf" is therefore a **very** powerful command that can obliterate your file system.  Always use it carefully.  In particular, I like to use the "./\*" type of relative path to ensure "rm" is constrained within a directory.  Be careful, as "/\*" would nuke your file system from the root.
 
 
 ## Step 5 - Build it
