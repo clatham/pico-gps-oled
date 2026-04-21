@@ -1,11 +1,11 @@
 # save the current working directory
-CWD=$PWD
+CWD="$PWD"
 
 # get the directory the script is in, get the project directory, and cd
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_DIR=$SCRIPT_DIR
+PROJECT_DIR="$SCRIPT_DIR"
 
-cd $PROJECT_DIR
+cd "$PROJECT_DIR"
 
 
 # if the build directory exists, empty it
@@ -20,4 +20,4 @@ cmake --build build --config Release
 
 
 # restore the original directory
-cd $CWD
+cd "$CWD"

@@ -9,15 +9,15 @@ An ill-behaved script will dump you back at the command prompt somewhere in the 
 
 Add the following line to the beginning of your script:
 ```
-CWD=$PWD
+CWD="$PWD"
 ```
 
 Add the following line to the end of your script, and make sure it says there when we add future lines in between:
 ```
-cd $CWD
+cd "$CWD"
 ```
 
-The first line sets the variable "CWD" equal to the value of the variable "PWD".  In this case, $PWD is a special variable that contains the current working directory.  There is also a bash command called "pwd" that performs the same function.
+The first line sets the variable "CWD" equal to the value of the variable "PWD".  In this case, $PWD is a special variable that contains the current working directory.  There is also a bash command called "pwd" that performs the same function.  Double quotes around the variable being evaluated prevents paths with unescaped spaces from breaking the script.
 
 Note that in BASH, a dollar sign is used to access the value of a variable.  In Windows, the variable would have a percent sign on both sides for the same effect.
 
@@ -29,9 +29,9 @@ Sometimes a script is run from another directory rather than the one it was inte
 Add the following lines to your BASH script:
 ```
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_DIR=$SCRIPT_DIR
+PROJECT_DIR="$SCRIPT_DIR"
 
-cd $PROJECT_DIR
+cd "$PROJECT_DIR"
 ```
 
 The first line is complicated, but we'll read it from the center out and left to right.  First, it gets the name of the script.  This is then run through the "dirname" command to give us just the directory.  We then "cd" to that directory while redirecting stdout to the /dev/null device.  /dev/null, also called the bit bucket, is a device that just throws away whatever you send it.  In this way, it can be used to prevent random warnings or status from making it to the terminal when we do things in a script.
