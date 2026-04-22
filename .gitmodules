@@ -1,0 +1,3 @@
+[submodule "thirdparty/pico-ssd1306-spi"]
+	path = thirdparty/pico-ssd1306-spi
+	url = https://github.com/Jac0bXu/pico-ssd1306-spi
