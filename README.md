@@ -19,3 +19,4 @@ In this project, we will connect a GNSS (GPS + GLONASS + Beidou) module and an O
 * [Lesson 3 - Basic BASH build script](./Lesson-03/Lesson-03.md)
 * [Lesson 4 - Targeting the Pi Pico](./Lesson-04/Lesson-04.md)
 * [Lesson 5 - Connecting and programming the OLED](./Lesson-05/Lesson-05.md)
+* [Lesson 6 - Connecting and receiving data from the GNSS module](./Lesson-06/Lesson-06.md)
