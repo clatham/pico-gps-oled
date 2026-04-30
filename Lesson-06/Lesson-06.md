@@ -11,8 +11,7 @@ The module we have is a GNSS module, because it can receive navigational data fr
 
 The GNSS module (and most GPS receivers I've ever seen, including very expensive ones) output NMEA 0183 strings that contain information about the satellites being seen, ephemeris data, and position data.  This data is transmitted by a serial universal asynchronous receiver/transmitter (UART) on the GNSS module.  The default baud rate of the UART is 9600 BPS.
 
-I'm not going to provide a full breakdown of the NMEA 0183 standard here.  Instead, please read the following:
-![NMEA 0183 article on Wikipedia](https://en.wikipedia.org/wiki/NMEA_0183)
+I'm not going to provide a full breakdown of the NMEA 0183 standard here.  Instead, please read the following: https://en.wikipedia.org/wiki/NMEA_0183.
 
 There are libraries for parsing these strings, but it's such a simple task that we're going to do it ourselves.
 
