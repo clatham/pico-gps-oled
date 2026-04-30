@@ -88,6 +88,8 @@ The uart_is_readable() function returns true is the specified UART has any data 
 
 ## Conclusion
 
+![A PuTTy terminal with NMEA 0183 strings](images/putty.png)
+
 So we're now printing the NMEA 0183 strings to Putty via the STDOUT over USB connection.  Take a look at the strings and try to understand them using the Wikipedia page linked above.  What changes when the GNSS module "locks-up" and starts flashing its red one pulse-per-second light?
 
 Our next step will be to tokenize the strings, so that we can consume them one field at a time.  Feel free to read up on tokenization and parsing.
