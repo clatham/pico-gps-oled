@@ -41,7 +41,7 @@ The first line is complicated, but we'll read it from the center out and left to
 Finally, we change directory to that held in "PROJECT_DIR".
 
 
-## Step 5 - Clean the build directory
+## Step 3 - Clean the build directory
 
 Next we'll delete the contents of the build directory, but only if that directory exists.  Otherwise, it would produce an error, because the direcotry is missing.
 
