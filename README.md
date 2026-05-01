@@ -33,7 +33,7 @@ Get these wherever they are cheapest.  Micro Center sells them for the advertise
 
 * [Breadboard and Jumper Wires](https://www.amazon.com/BOJACK-Values-Solderless-Breadboard-Flexible/dp/B08Y59P6D1)
 
-I often buy one of the Pi Pico starter kits that includes a Pi Pico and a breadboard kit, such as this one: https://www.amazon.com/dp/B0C3771CK8
+I often buy one of the Pi Pico starter kits that includes a Pi Pico and a breadboard kit, such as [this one](https://www.amazon.com/dp/B0C3771CK8).
 
 * [OLED Display with SPI](https://www.amazon.com/dp/B08SJW4J4P)
 
