@@ -20,3 +20,4 @@ In this project, we will connect a GNSS (GPS + GLONASS + Beidou) module and an O
 * [Lesson 4 - Targeting the Pi Pico](./Lesson-04/Lesson-04.md)
 * [Lesson 5 - Connecting and programming the OLED](./Lesson-05/Lesson-05.md)
 * [Lesson 6 - Connecting and receiving data from the GNSS module](./Lesson-06/Lesson-06.md)
+* [Lesson 7 - Parsing the NMEA 0183 output](./Lesson-07/Lesson-07.md)
