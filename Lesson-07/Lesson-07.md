@@ -25,7 +25,7 @@ enum NMEA0183_SentenceIdEnum
 enum NMEA0183_SentenceIdEnum nmea0183_getSentenceId(const char *sentence, int sentenceLength);
 
 int nmea0183_tokenizeSentence(const char *sentence, char tokens[][20]);
-void nmea0183_parseSentenceRMC(const char *sentence, char *date, char *time, double *latitude, double *longitude, float *speed, float *course);
+void nmea0183_parseSentenceRMC(const char *sentence, char *date, int *hour, int *minute, int *second, double *latitude, double *longitude, float *speed, float *course);
 ```
 
 Because we're using C, which doesn't have namespaces, I've prefixed the functions and enum with nmea0183 to identify them as part of this library.  The enumeration, NMEA0183_SentenceIdEnum, represents all of the NMEA 0183 sentences that we might reasonably expect to see.
@@ -122,13 +122,21 @@ int nmea0183_tokenizeSentence(const char *sentence, char tokens[][20])
 }
 
 
-void nmea0183_parseSentenceRMC(const char *sentence, char *date, char *time, double *latitude, double *longitude, float *speed, float *course)
+void nmea0183_parseSentenceRMC(const char *sentence, char *date, int *hour, int *minute, int *second, double *latitude, double *longitude, float *speed, float *course)
 {
     char tokens[20][20];
     int tokenCount = nmea0183_tokenizeSentence(sentence, tokens);
     
     sprintf(date, "%c%c/%c%c/%c%c", tokens[8][2], tokens[8][3], tokens[8][0], tokens[8][1], tokens[8][4], tokens[8][5]);
-    sprintf(time, "%c%c:%c%c:%c%c", tokens[0][0], tokens[0][1], tokens[0][2], tokens[0][3], tokens[0][4], tokens[0][5]);
+    
+    *hour = (tokens[0][0] - '0') * 10.0 +
+            (tokens[0][1] - '0');
+    
+    *minute = (tokens[0][2] - '0') * 10.0 +
+              (tokens[0][3] - '0');
+    
+    *second = (tokens[0][4] - '0') * 10.0 +
+              (tokens[0][5] - '0');
     
     *latitude = (tokens[2][0] - '0') * 10.0 +
                 (tokens[2][1] - '0') +
@@ -166,7 +174,7 @@ nmea0183_getSentenceId() ensures the sentence is of legal length, between 10 and
 
 nmea0183_tokenizeSentence() initializes its read pointer to the eighth the character in the sentence.  This bypasses the talker ID and sentence type.  It moves the pointer forward until it finds a comma, which is the field delimiter.  Then it copies the characters from start to the pointer into the current token array element.  The start is moved forward to one character after the comma, and the process is repeated.  This continues until the pointer reaches the NUL character at the end of the string.  Then it rescans the final token looking for the asterix character.  If it finds it, then the token is copied and so is the checksum.  If it doesn't find it, then just the token is copied.  The number of valid tokens is returned to the calling function.
 
-nmea0183_parseSentenceRMC() calls the tokenizer function to populate its token array.  Since each sentence has a *mostly* fixed number of fields, we know which variables each field represents.  We convert each field to the type of the variable provided for it by the caller.  Date and time are turned into strings with the common U.S. representations.  Latitude and longitude are provided as degrees and minutes in base sixty, or sexagesimal.  If latitude is south of the equator or longitude is west of the prime meridian, then we need to negate them.  Finally, speed is provided in knots, and course is in degrees.
+nmea0183_parseSentenceRMC() calls the tokenizer function to populate its token array.  Since each sentence has a *mostly* fixed number of fields, we know which variables each field represents.  We convert each field to the type of the variable provided for it by the caller.  Date is turned into a string with the common U.S. representation.  Hours, minutes, and seconds of time are turned into integers.  Latitude and longitude are provided as degrees and minutes in base sixty, or sexagesimal.  If latitude is south of the equator or longitude is west of the prime meridian, then we need to negate them.  Finally, speed is provided in knots, and course is in degrees.
 
 
 ## Step 2 - Modify the CMake
@@ -192,7 +200,9 @@ Add the following lines to the top of you main.c, so you can include the NMEA 01
 Just before your main loop, add these lines to declare the variables we will use.
 ```
 char date[10];
-char time[10];
+int hour = 0;
+int minute = 0;
+int second = 0;
 double latitude = 99.0;
 double longitude = 999.0;
 float speed = 999.0;
@@ -204,7 +214,7 @@ Add the following lines between printing the gpsLine and zeroing gpsLineOffset:
 switch(nmea0183_getSentenceId(gpsLine, gpsLineOffset))
 {
     case NMEA0183_SentenceId_RMC:
-        nmea0183_parseSentenceRMC(gpsLine, date, time, &latitude, &longitude, &speed, &course);
+        nmea0183_parseSentenceRMC(gpsLine, date, &hour, &minute, &second, &latitude, &longitude, &speed, &course);
         break;
     
     default:
@@ -217,7 +227,8 @@ Between clear'ing the OLED display and show'ing it, we should have only these li
 ```
 char buf[10];
 ssd1306_draw_string(&disp, 0, 0, 1, date);
-ssd1306_draw_string(&disp, 0, 8, 1, time);
+snprintf(buf, sizeof(buf), "%02u:%02u:%02u", hour, minute, second);
+ssd1306_draw_string(&disp, 0, 8, 1, buf);
 snprintf(buf, sizeof(buf), "%.3lf %c", fabs(latitude), latitude >= 0.0 ? 'N' : 'S');
 ssd1306_draw_string(&disp, 0, 16, 1, buf);
 snprintf(buf, sizeof(buf), "%.3lf %c", fabs(longitude), longitude >= 0.0 ? 'E' : 'W');
