@@ -2,7 +2,7 @@
 
 ## Step 1 - Create the NMEA 0183 library
 
-In the pico-gps-oled/thirdparty/ directory, create a directory named nmea0183/, and within it, create nmea0183.h and nmea0183.c files.  We're creating these outside of our lessons, so they can be used from multiple lessons as needed.
+In the pico-gps-oled/Lesson-07/ directory, create nmea0183.h and nmea0183.c files.
 
 The nmea0183.h file should consist of the following lines:
 ```
@@ -202,12 +202,10 @@ nmea0183_parseSentenceRMC() calls the tokenizer function to populate its token a
 
 Add the following line to the add_executable() for pico-gps-oled:
 ```
-../thirdparty/nmea0183/nmea0183.c
+nmea0183.c
 ```
 
-This will include the NMEA 0183 library in your application.  To ensure the application can find the header file for the library, add this line to your target_include_directories():
-```
-${CMAKE_SOURCE_DIR}/../thirdparty/nmea0183
+This will include the NMEA 0183 library in your application.
 ```
 
 

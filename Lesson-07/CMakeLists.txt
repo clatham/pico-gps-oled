@@ -25,13 +25,11 @@ add_compile_options($<$<CXX_COMPILER_ID:MSVC>:/MP>)
 
 add_executable(pico-gps-oled
     main.c
-    ../thirdparty/nmea0183/nmea0183.c
     ../thirdparty/pico-ssd1306-spi/ssd1306.c
 )
 
 target_include_directories(pico-gps-oled PRIVATE
     ${CMAKE_SOURCE_DIR}/../thirdparty
-    ${CMAKE_SOURCE_DIR}/../thirdparty/nmea0183
     ${CMAKE_SOURCE_DIR}/../thirdparty/pico-ssd1306-spi
 )
 
